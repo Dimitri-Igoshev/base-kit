@@ -32,6 +32,8 @@
     "bcryptjs": "^2.4.3",
     "class-validator": "^0.13.2",
     "graphql": "^16.5.0",
+    "graphql-ws": "^5.9.1",
+    "nestjs-i18n": "^9.1.5",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

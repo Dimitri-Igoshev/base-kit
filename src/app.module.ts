@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { GraphQLModule } from '@nestjs/graphql'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
+import { AcceptLanguageResolver, GraphQLWebsocketResolver, I18nModule, QueryResolver } from 'nestjs-i18n'
 
 import { getPostgresConfig } from './config/postgres.config'
 import { UserModule } from './user/user.module'
@@ -27,6 +28,22 @@ import { CommonModule } from './common/common.module'
         path: join(process.cwd(), 'src/graphql.ts'),
         outputAs: 'class'
       },
+      subscriptions: {
+        'graphql-ws': true
+      },
+      context: (ctx) => ctx
+    }),
+    I18nModule.forRoot({
+      fallbackLanguage: 'ru',
+      loaderOptions: {
+        path: join(process.cwd(), 'src/i18n/'),
+        watch: true
+      },
+      resolvers: [
+        GraphQLWebsocketResolver,
+        { use: QueryResolver, options: ['lang'] },
+        AcceptLanguageResolver
+      ]
     }),
     UserModule,
     CommonModule
