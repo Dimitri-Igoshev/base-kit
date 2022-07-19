@@ -1,8 +1,12 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { UserService } from '../user.service'
 import { CreateUserDto, UpdateUserDto, UserDto } from '../dto/user.dto'
+import { UseGuards } from '@nestjs/common'
+import { JwtAuthGuard } from '../../auth/guard/auth.guard'
+import { AdminGuard } from '../../auth/guard/admin.guard'
 
 @Resolver('User')
+@UseGuards(JwtAuthGuard, AdminGuard)
 export class UserResolver {
   constructor(private readonly userService: UserService) {
   }

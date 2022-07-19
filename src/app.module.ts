@@ -9,6 +9,7 @@ import { AcceptLanguageResolver, GraphQLWebsocketResolver, I18nModule, QueryReso
 import { getPostgresConfig } from './config/postgres.config'
 import { UserModule } from './user/user.module'
 import { CommonModule } from './common/common.module'
+import { AuthModule } from './auth/auth.module'
 
 @Module({
   imports: [
@@ -34,7 +35,7 @@ import { CommonModule } from './common/common.module'
       context: (ctx) => ctx
     }),
     I18nModule.forRoot({
-      fallbackLanguage: 'ru',
+      fallbackLanguage: 'en',
       loaderOptions: {
         path: join(process.cwd(), 'src/i18n/'),
         watch: true
@@ -42,11 +43,12 @@ import { CommonModule } from './common/common.module'
       resolvers: [
         GraphQLWebsocketResolver,
         { use: QueryResolver, options: ['lang'] },
-        AcceptLanguageResolver
+        AcceptLanguageResolver,
       ]
     }),
+    CommonModule,
     UserModule,
-    CommonModule
+    AuthModule
   ]
 })
 export class AppModule {

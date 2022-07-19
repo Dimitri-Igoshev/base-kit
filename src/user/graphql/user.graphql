@@ -22,10 +22,11 @@ input UpdateUserInput {
     id: ID!
     firstName: String
     lastName: String
-    status: String!
-    role: String!
+    status: String
+    role: String
     confirmationToken: String
     resetToken: String
+    refreshToken: String
 }
 
 type Query {

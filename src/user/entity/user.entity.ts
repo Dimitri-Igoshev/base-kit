@@ -4,7 +4,7 @@ import * as bcrypt from 'bcryptjs'
 
 import { Base } from '../../common/entuty/base.entity'
 import { UserDto } from '../dto/user.dto'
-import { AUTH } from '../../common/constant/auth.constant'
+import { USER } from '../../common/constant/user.constant'
 import { UserRoleEnum, UserStatusEnum } from '../enum/user.enum'
 
 @Entity('user')
@@ -35,18 +35,17 @@ export class UserEntity extends Base {
   @Column({ nullable: true })
   resetToken?: string
 
+  @Column({nullable: true})
+  refreshToken?: string
+
   @BeforeInsert()
   async hashPassword() {
-    const salt = await bcrypt.genSaltSync(AUTH.SALT_OR_ROUNDS)
+    const salt = await bcrypt.genSaltSync(USER.SALT_OR_ROUNDS)
     this.password = await bcrypt.hashSync(this.password, salt)
   }
 
-  async comparePassword(attempt: string): Promise<Boolean> {
-    return await bcrypt.compareSync(attempt, this.password)
-  }
-
   toResponseObject(): UserDto {
-    const { password, ...user } = this
+    const { password, refreshToken, ...user } = this
     return user
   }
 }

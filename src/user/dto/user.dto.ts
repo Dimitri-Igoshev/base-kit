@@ -13,11 +13,27 @@ export class UserDto {
   updatedAt: Date
 }
 
+export class UserWithPasswordDto {
+  id: number
+  email: string
+  password: string
+  firstName?: string
+  lastName?: string
+  status: UserStatusEnum
+  role: UserRoleEnum
+  confirmationToken?: string
+  resetToken?: string
+  refreshToken?: string
+  createdAt: Date
+  updatedAt: Date
+}
+
 export class CreateUserDto {
   email: string
   password: string
   firstName?: string
   lastName?: string
+  confirmationToken: string
 }
 
 export class UpdateUserDto {
@@ -28,4 +44,5 @@ export class UpdateUserDto {
   role?: UserRoleEnum
   confirmationToken?: string
   resetToken?: string
+  refreshToken?: string
 }

@@ -1,4 +1,9 @@
 {
   "USER_ALREADY_EXIST": "User already exist",
-  "USER_NOT_FOUND": "User not found"
+  "USER_NOT_FOUND": "User not found",
+  "USER_WITH_THIS_EMAIL_NOT_FOUND": "User with this email not found",
+  "USER_IS_NOT_ACTIVE": "User is not active, please confirm your account",
+  "USER_UNAUTHORIZED": "User unauthorized",
+  "PASSWORD_NOT_MATCH": "Password not match",
+  "REFRESH_TOKEN_EXPIRED": "Refresh token expired"
 }

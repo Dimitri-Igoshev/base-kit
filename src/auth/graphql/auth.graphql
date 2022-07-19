@@ -1,0 +1,18 @@
+input SignUpInput {
+    email: String!
+    password: String!
+    firstName: String
+    lastName: String
+}
+
+input SignInInput {
+    email: String!
+    password: String!
+}
+
+type Mutation {
+    signUp(signUpInput: SignUpInput): Boolean!
+    signIn(signInInput: SignInInput): String!
+    refreshToken(email: String): String!
+}
+
