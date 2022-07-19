@@ -5,7 +5,7 @@ import * as bcrypt from 'bcryptjs'
 import { Base } from '../../common/entuty/base.entity'
 import { UserDto } from '../dto/user.dto'
 import { AUTH } from '../../common/constant/auth.constant'
-import { RoleEnum } from '../enum/role.enum'
+import { UserRoleEnum, UserStatusEnum } from '../enum/user.enum'
 
 @Entity('user')
 export class UserEntity extends Base {
@@ -17,8 +17,23 @@ export class UserEntity extends Base {
   @Length(8, 100)
   password: string
 
-  @Column({ type: 'enum', enum: RoleEnum, default: RoleEnum.USER })
-  role: RoleEnum
+  @Column({ type: 'text', nullable: true })
+  firstName?: string
+
+  @Column({ type: 'text', nullable: true })
+  lastName?: string
+
+  @Column({ type: 'enum', enum: UserStatusEnum, default: UserStatusEnum.PADDING })
+  status: UserStatusEnum
+
+  @Column({ type: 'enum', enum: UserRoleEnum, default: UserRoleEnum.USER })
+  role: UserRoleEnum
+
+  @Column({ nullable: true })
+  confirmationToken?: string
+
+  @Column({ nullable: true })
+  resetToken?: string
 
   @BeforeInsert()
   async hashPassword() {

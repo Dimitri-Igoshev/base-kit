@@ -10,19 +10,31 @@
 export class CreateUserInput {
     email: string;
     password: string;
+    firstName?: Nullable<string>;
+    lastName?: Nullable<string>;
 }
 
 export class UpdateUserInput {
     id: string;
+    firstName?: Nullable<string>;
+    lastName?: Nullable<string>;
+    status: string;
     role: string;
+    confirmationToken?: Nullable<string>;
+    resetToken?: Nullable<string>;
 }
 
 export class User {
     id: string;
     email: string;
+    firstName?: Nullable<string>;
+    lastName?: Nullable<string>;
+    status: string;
+    role: string;
+    confirmationToken?: Nullable<string>;
+    resetToken?: Nullable<string>;
     createdAt: string;
     updatedAt: string;
-    role: string;
 }
 
 export abstract class IQuery {

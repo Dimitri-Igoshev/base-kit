@@ -1,19 +1,31 @@
 type User {
     id: ID!
     email: String!
+    firstName: String
+    lastName: String
+    status: String!
+    role: String!
+    confirmationToken: String
+    resetToken: String
     createdAt: String!
     updatedAt: String!
-    role: String!
 }
 
 input CreateUserInput {
     email: String!
     password: String!
+    firstName: String
+    lastName: String
 }
 
 input UpdateUserInput {
     id: ID!
+    firstName: String
+    lastName: String
+    status: String!
     role: String!
+    confirmationToken: String
+    resetToken: String
 }
 
 type Query {
