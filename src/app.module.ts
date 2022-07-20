@@ -10,6 +10,7 @@ import { getPostgresConfig } from './config/postgres.config'
 import { UserModule } from './user/user.module'
 import { CommonModule } from './common/common.module'
 import { AuthModule } from './auth/auth.module'
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -48,7 +49,8 @@ import { AuthModule } from './auth/auth.module'
     }),
     CommonModule,
     UserModule,
-    AuthModule
+    AuthModule,
+    MailModule
   ]
 })
 export class AppModule {

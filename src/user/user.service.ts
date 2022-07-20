@@ -34,6 +34,13 @@ export class UserService {
     return user
   }
 
+  async findByResetToken(resetToken: string): Promise<UserWithPasswordDto | null> {
+    const user = await this.userRepository.findOne({ where: { resetToken } })
+    if (!user) throw new HttpException(this.i18n.t('errors.USER_NOT_FOUND'), HttpStatus.NOT_FOUND)
+
+    return user
+  }
+
   async createUser(data: CreateUserDto): Promise<UserDto> {
     const isExist = await this.userRepository.findOne({ where: { email: data.email } })
     if (isExist) throw new HttpException(this.i18n.t('errors.USER_ALREADY_EXIST'), HttpStatus.CONFLICT)

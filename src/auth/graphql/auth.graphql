@@ -10,9 +10,16 @@ input SignInInput {
     password: String!
 }
 
+input ResetPasswordInput {
+    password: String!
+    token: String!
+}
+
 type Mutation {
     signUp(signUpInput: SignUpInput): Boolean!
     signIn(signInInput: SignInInput): String!
     refreshToken(email: String): String!
+    recoveryPassword(email: String): Boolean!
+    resetPassword(resetPasswordInput: ResetPasswordInput): Boolean!
 }
 

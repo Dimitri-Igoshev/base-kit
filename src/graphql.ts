@@ -19,6 +19,11 @@ export class SignInInput {
     password: string;
 }
 
+export class ResetPasswordInput {
+    password: string;
+    token: string;
+}
+
 export class CreateUserInput {
     email: string;
     password: string;
@@ -43,6 +48,10 @@ export abstract class IMutation {
     abstract signIn(signInInput?: Nullable<SignInInput>): string | Promise<string>;
 
     abstract refreshToken(email?: Nullable<string>): string | Promise<string>;
+
+    abstract recoveryPassword(email?: Nullable<string>): boolean | Promise<boolean>;
+
+    abstract resetPassword(resetPasswordInput?: Nullable<ResetPasswordInput>): boolean | Promise<boolean>;
 
     abstract createUser(createUserInput?: Nullable<CreateUserInput>): User | Promise<User>;
 

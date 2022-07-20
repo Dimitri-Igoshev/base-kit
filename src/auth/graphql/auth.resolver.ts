@@ -1,7 +1,7 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql'
 import { AuthService } from '../auth.service'
 import { CreateUserDto } from '../../user/dto/user.dto'
-import { LoginDto } from '../dto/auth.dto'
+import { LoginDto, ResetPasswordDto } from '../dto/auth.dto'
 
 @Resolver('Auth')
 export class AuthResolver {
@@ -21,5 +21,15 @@ export class AuthResolver {
   @Mutation('refreshToken')
   async refreshToken(@Args('email') email: string): Promise<string> {
     return await this.authService.refreshToken(email)
+  }
+
+  @Mutation('recoveryPassword')
+  async recoveryPassword(@Args('email') email: string): Promise<Boolean> {
+    return await this.authService.recoveryPassword(email)
+  }
+
+  @Mutation('resetPassword')
+  async resetPassword(@Args('resetPasswordInput') data: ResetPasswordDto): Promise<Boolean> {
+    return await this.authService.resetPassword(data)
   }
 }

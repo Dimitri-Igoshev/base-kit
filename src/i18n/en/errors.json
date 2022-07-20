@@ -5,5 +5,7 @@
   "USER_IS_NOT_ACTIVE": "User is not active, please confirm your account",
   "USER_UNAUTHORIZED": "User unauthorized",
   "PASSWORD_NOT_MATCH": "Password not match",
-  "REFRESH_TOKEN_EXPIRED": "Refresh token expired"
+  "REFRESH_TOKEN_EXPIRED": "Refresh token expired",
+  "RESET_TOKEN_EXPIRED": "Reset token expired",
+  "SERVER_ERROR": "Server error"
 }

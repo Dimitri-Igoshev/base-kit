@@ -6,6 +6,7 @@ import { JwtModule } from '@nestjs/jwt'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { UserModule } from '../user/user.module'
 import { JwtStrategy } from './jwt.strategy'
+import { MailService } from '../mail/mail.service'
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { JwtStrategy } from './jwt.strategy'
     }),
     PassportModule.register({ defaultStrategy: 'jwt' })
   ],
-  providers: [AuthService, AuthResolver, JwtStrategy],
+  providers: [AuthService, AuthResolver, JwtStrategy, MailService],
 })
 export class AuthModule {
 }
