@@ -11,6 +11,7 @@ import { UserModule } from './user/user.module'
 import { CommonModule } from './common/common.module'
 import { AuthModule } from './auth/auth.module'
 import { MailModule } from './mail/mail.module';
+import { MessageModule } from './message/message.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { MailModule } from './mail/mail.module';
         path: join(process.cwd(), 'src/graphql.ts'),
         outputAs: 'class'
       },
+      installSubscriptionHandlers: true,
       subscriptions: {
         'graphql-ws': true
       },
@@ -50,7 +52,8 @@ import { MailModule } from './mail/mail.module';
     CommonModule,
     UserModule,
     AuthModule,
-    MailModule
+    MailModule,
+    MessageModule
   ]
 })
 export class AppModule {

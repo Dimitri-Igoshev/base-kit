@@ -5,7 +5,6 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { UserEntity } from './entity/user.entity'
 import { CreateUserDto, UpdateUserDto, UserDto, UserWithPasswordDto } from './dto/user.dto'
 import { I18nService } from 'nestjs-i18n'
-import { User } from '../graphql'
 
 @Injectable()
 export class UserService {
@@ -16,12 +15,12 @@ export class UserService {
   }
 
   async findAll(): Promise<UserDto[]> {
-    const users = await this.userRepository.find()
+    const users = await this.userRepository.find({ relations: ['messages'] })
     return users.map(user => user.toResponseObject())
   }
 
   async findById(id: number): Promise<UserDto | null> {
-    const user = await this.userRepository.findOne({ where: { id } })
+    const user = await this.userRepository.findOne({ where: { id }, relations: ['messages'] })
     if (!user) throw new HttpException(this.i18n.t('errors.USER_NOT_FOUND'), HttpStatus.NOT_FOUND)
 
     return user.toResponseObject()

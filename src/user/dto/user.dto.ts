@@ -1,4 +1,5 @@
 import { UserRoleEnum, UserStatusEnum } from '../enum/user.enum'
+import { MessageEntity } from '../../message/entity/message.entity'
 
 export class UserDto {
   id: number
@@ -7,6 +8,7 @@ export class UserDto {
   lastName?: string
   status: UserStatusEnum
   role: UserRoleEnum
+  messages?: MessageEntity[]
   confirmationToken?: string
   resetToken?: string
   createdAt: Date

@@ -7,5 +7,6 @@
   "PASSWORD_NOT_MATCH": "Password not match",
   "REFRESH_TOKEN_EXPIRED": "Refresh token expired",
   "RESET_TOKEN_EXPIRED": "Reset token expired",
+  "MESSAGE_NOT_FOUND": "Message not found",
   "SERVER_ERROR": "Server error"
 }

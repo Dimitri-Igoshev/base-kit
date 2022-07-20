@@ -24,6 +24,16 @@ export class ResetPasswordInput {
     token: string;
 }
 
+export class CreateMessageInput {
+    text: string;
+    userId: string;
+}
+
+export class UpdateMessageInput {
+    id: string;
+    text: string;
+}
+
 export class CreateUserInput {
     email: string;
     password: string;
@@ -53,11 +63,39 @@ export abstract class IMutation {
 
     abstract resetPassword(resetPasswordInput?: Nullable<ResetPasswordInput>): boolean | Promise<boolean>;
 
+    abstract createMessage(createMessageInput?: Nullable<CreateMessageInput>): Message | Promise<Message>;
+
+    abstract updateMessage(updateMessageInput?: Nullable<UpdateMessageInput>): Message | Promise<Message>;
+
+    abstract deleteMessage(id: string): boolean | Promise<boolean>;
+
     abstract createUser(createUserInput?: Nullable<CreateUserInput>): User | Promise<User>;
 
     abstract updateUser(updateUserInput?: Nullable<UpdateUserInput>): User | Promise<User>;
 
     abstract deleteUser(id: string): Nullable<boolean> | Promise<Nullable<boolean>>;
+}
+
+export class Message {
+    id: string;
+    text: string;
+    createdAt: string;
+    updatedAt: string;
+    user: User;
+}
+
+export abstract class IQuery {
+    abstract messages(): Nullable<Message[]> | Promise<Nullable<Message[]>>;
+
+    abstract message(id: string): Nullable<Message> | Promise<Nullable<Message>>;
+
+    abstract users(): Nullable<User[]> | Promise<Nullable<User[]>>;
+
+    abstract user(id: string): Nullable<User> | Promise<Nullable<User>>;
+}
+
+export abstract class ISubscription {
+    abstract message(): Nullable<Message> | Promise<Nullable<Message>>;
 }
 
 export class User {
@@ -67,16 +105,11 @@ export class User {
     lastName?: Nullable<string>;
     status: string;
     role: string;
+    messages?: Nullable<Message[]>;
     confirmationToken?: Nullable<string>;
     resetToken?: Nullable<string>;
     createdAt: string;
     updatedAt: string;
-}
-
-export abstract class IQuery {
-    abstract users(): Nullable<User[]> | Promise<Nullable<User[]>>;
-
-    abstract user(id: string): Nullable<User> | Promise<Nullable<User>>;
 }
 
 type Nullable<T> = T | null;

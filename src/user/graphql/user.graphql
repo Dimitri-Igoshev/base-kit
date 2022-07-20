@@ -5,6 +5,7 @@ type User {
     lastName: String
     status: String!
     role: String!
+    messages: [Message!]
     confirmationToken: String
     resetToken: String
     createdAt: String!

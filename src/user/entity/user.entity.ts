@@ -1,4 +1,4 @@
-import { BeforeInsert, Column, Entity } from 'typeorm'
+import { BeforeInsert, Column, Entity, OneToMany } from 'typeorm'
 import { IsEmail, Length } from 'class-validator'
 import * as bcrypt from 'bcryptjs'
 
@@ -6,6 +6,7 @@ import { Base } from '../../common/entuty/base.entity'
 import { UserDto } from '../dto/user.dto'
 import { USER } from '../../common/constant/user.constant'
 import { UserRoleEnum, UserStatusEnum } from '../enum/user.enum'
+import { MessageEntity } from '../../message/entity/message.entity'
 
 @Entity('user')
 export class UserEntity extends Base {
@@ -28,6 +29,9 @@ export class UserEntity extends Base {
 
   @Column({ type: 'enum', enum: UserRoleEnum, default: UserRoleEnum.USER })
   role: UserRoleEnum
+
+  @OneToMany(type => MessageEntity, messages => messages.user, { cascade: true })
+  messages: MessageEntity[]
 
   @Column({ nullable: true })
   confirmationToken?: string
