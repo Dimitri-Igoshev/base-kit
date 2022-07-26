@@ -33,7 +33,9 @@ import { MessageModule } from './message/message.module';
       },
       installSubscriptionHandlers: true,
       subscriptions: {
-        'graphql-ws': true
+        'subscriptions-transport-ws': {
+          path: '/graphql'
+        },
       },
       context: (ctx) => ctx
     }),
@@ -54,7 +56,7 @@ import { MessageModule } from './message/message.module';
     AuthModule,
     MailModule,
     MessageModule
-  ]
+  ],
 })
 export class AppModule {
 }

@@ -1,1 +1,13 @@
+<h1>Messages</h1>
+
+<p *ngIf='loading; else messages_content'>Loading...</p>
+
+<ng-template #messages_content>
+  <p *ngFor='let message of messages'>{{ message.text }}</p>
+</ng-template>
+
+<p>{{ errors }}</p>
+
+<button (click)="createMessage()">Create message</button>
+
 <router-outlet></router-outlet>
