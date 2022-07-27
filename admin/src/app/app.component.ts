@@ -27,8 +27,9 @@ const MESSAGE_SUBSCRIPTION = gql`
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: `
+    <router-outlet></router-outlet>
+  `
 })
 export class AppComponent implements OnInit {
   title = 'admin'
@@ -60,14 +61,11 @@ export class AppComponent implements OnInit {
       })
   }
 
-  createMessage() {
+  createMessage(text: string, userId: number) {
     this.apollo.mutate<any>({
       mutation: CREATE_MESSAGE,
       variables: {
-        createMessageInput: {
-          text: 'From angular new 777',
-          userId: 5
-        }
+        createMessageInput: { text, userId }
       }
     }).subscribe(({ data }) => {
       this.message = data.createMessage.text
